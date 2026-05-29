@@ -52,6 +52,7 @@
                 </div>
             </div>
 
+            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-6 py-6">
                 <div class="flex flex-col gap-y-4 text-lg font-medium">
                     <a href="#" onclick="showPage('home'); closeMobileMenu()" class="nav-link">Home</a>
@@ -99,9 +100,130 @@
         </section>
     </div>
 
-    <!-- CATEGORIES, INVENTORY, ABOUT, CONTACT pages are included below (shortened for this message but present in full code) -->
+    <!-- CATEGORIES PAGE -->
+    <div id="categories" class="page pt-20 max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <div class="text-xs uppercase tracking-[2px] text-cyan-400 font-semibold mb-2">SHOP BY CATEGORY</div>
+            <h2 class="section-header">Find What You're Looking For</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div onclick="filterAndGoToInventory('Action Figures')" class="category-card cursor-pointer bg-slate-900 border border-slate-700 hover:border-cyan-400 p-10 rounded-3xl text-center">
+                <i class="fa-solid fa-robot text-6xl text-cyan-400 mb-6"></i>
+                <div class="font-bold text-2xl mb-2">Action Figures</div>
+                <div class="text-slate-400">Transformers • Star Wars • Spider-Man</div>
+            </div>
+            <div onclick="filterAndGoToInventory('Mini Figures')" class="category-card cursor-pointer bg-slate-900 border border-slate-700 hover:border-cyan-400 p-10 rounded-3xl text-center">
+                <i class="fa-solid fa-chess-rook text-6xl text-fuchsia-400 mb-6"></i>
+                <div class="font-bold text-2xl mb-2">Mini Figures</div>
+                <div class="text-slate-400">LEGO • Blokees • Funko</div>
+            </div>
+            <div onclick="filterAndGoToInventory('Plush')" class="category-card cursor-pointer bg-slate-900 border border-slate-700 hover:border-cyan-400 p-10 rounded-3xl text-center">
+                <i class="fa-solid fa-paw text-6xl text-pink-400 mb-6"></i>
+                <div class="font-bold text-2xl mb-2">Plush &amp; Soft Toys</div>
+                <div class="text-slate-400">Grogu • Pokémon • Disney</div>
+            </div>
+            <div onclick="filterAndGoToInventory('Blind Bags')" class="category-card cursor-pointer bg-slate-900 border border-slate-700 hover:border-cyan-400 p-10 rounded-3xl text-center">
+                <i class="fa-solid fa-gift text-6xl text-amber-400 mb-6"></i>
+                <div class="font-bold text-2xl mb-2">Blind Bags &amp; Mystery</div>
+                <div class="text-slate-400">Hasbro • Mattel • Fisher-Price</div>
+            </div>
+        </div>
+        <div class="text-center mt-16">
+            <button onclick="showPage('inventory')" class="px-10 py-4 bg-white text-slate-950 font-bold rounded-3xl text-lg hover:bg-slate-100">VIEW ALL INVENTORY</button>
+        </div>
+    </div>
 
-    <!-- Stripe Test Checkout Modal -->
+    <!-- ALL INVENTORY PAGE -->
+    <div id="inventory" class="page pt-20 max-w-7xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <div class="text-xs uppercase tracking-[2px] text-cyan-400 font-semibold mb-2">COMPLETE CATALOG</div>
+                <h2 class="section-header">All Inventory</h2>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <input type="text" id="search-input" placeholder="Search products..." onkeyup="filterInventory()" class="bg-slate-900 border border-slate-700 rounded-2xl px-5 py-2.5 text-sm w-full md:w-72">
+                <select id="sort-select" onchange="filterInventory()" class="bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2.5 text-sm">
+                    <option value="newest">Newest First</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name A–Z</option>
+                </select>
+            </div>
+        </div>
+        <div id="inventory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+    </div>
+
+    <!-- ABOUT US PAGE -->
+    <div id="about" class="page pt-20 max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <div class="text-xs uppercase tracking-[2px] text-cyan-400 font-semibold mb-2">OUR STORY</div>
+            <h2 class="section-header">About Nubz Toys &amp; Collectibles</h2>
+        </div>
+        <div class="prose prose-invert max-w-none text-lg text-slate-300 space-y-8">
+            <p>Nubz Toys &amp; Collectibles was founded in 2026 with one simple mission: to bring joy, nostalgia, and discovery to collectors of all ages.</p>
+            <p>What started as a personal passion for rare finds quickly grew into a trusted destination for premium toys, action figures, plush, and collectibles.</p>
+            <p>Today, Nubz serves collectors around the world from our base in North Carolina.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT US PAGE -->
+    <div id="contact" class="page pt-20 max-w-2xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <div class="text-xs uppercase tracking-[2px] text-cyan-400 font-semibold mb-2">LET’S CONNECT</div>
+            <h2 class="section-header">Contact Us</h2>
+        </div>
+        <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div><label class="block text-sm font-medium mb-2">Your Name</label><input type="text" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-3.5"></div>
+                <div><label class="block text-sm font-medium mb-2">Email Address</label><input type="email" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-3.5"></div>
+            </div>
+            <div><label class="block text-sm font-medium mb-2">Message</label><textarea rows="6" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-3.5"></textarea></div>
+            <button type="button" onclick="submitContactForm()" class="w-full py-4 bg-white text-slate-950 font-bold rounded-3xl text-lg hover:bg-slate-100">SEND MESSAGE</button>
+        </form>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-slate-800 py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-sm text-slate-400 flex flex-col md:flex-row justify-between items-center gap-y-6">
+            <div>© 2026 Nubz Toys &amp; Collectibles. All rights reserved.</div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+                <a href="#" onclick="showPage('about')" class="hover:text-white">About Us</a>
+                <a href="#" onclick="showPage('contact')" class="hover:text-white">Contact Us</a>
+                <a href="#" onclick="showPrivacy()" class="hover:text-white">Privacy Policy</a>
+                <a href="#" onclick="showTerms()" class="hover:text-white">Terms &amp; Conditions</a>
+                <a href="#" onclick="showAdmin()" class="hover:text-white font-semibold">Admin Panel</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ADMIN MODAL -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-6">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-2xl">Admin Panel</h3>
+                <button onclick="closeAdmin()" class="text-3xl text-slate-400 hover:text-white">×</button>
+            </div>
+            <div id="admin-login">
+                <p class="text-sm text-slate-400 mb-4">Enter admin password:</p>
+                <input type="password" id="admin-password" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-5 py-3 mb-4" placeholder="Password">
+                <button onclick="loginAdmin()" class="w-full py-3 bg-white text-slate-950 font-bold rounded-3xl">Login</button>
+                <p class="text-xs text-center text-slate-500 mt-3">Demo password: <span class="font-mono">nubz2026</span></p>
+            </div>
+            <div id="admin-panel" class="hidden">
+                <div class="mb-8 border border-slate-700 rounded-2xl p-6">
+                    <h4 class="font-semibold text-lg mb-4">Bulk Import via CSV</h4>
+                    <button onclick="downloadSampleCSV()" class="mb-4 px-5 py-2 bg-slate-700 hover:bg-slate-600 text-sm rounded-2xl flex items-center gap-x-2">
+                        <i class="fa-solid fa-download"></i> Download Sample CSV Template
+                    </button>
+                    <input type="file" id="csv-file" accept=".csv" class="mb-4 block w-full text-sm">
+                    <button onclick="importCSV()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl text-sm">Import Products</button>
+                    <div id="csv-result" class="mt-3 text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STRIPE TEST CHECKOUT MODAL -->
     <div id="stripe-modal" class="hidden fixed inset-0 bg-black/80 z-[110] flex items-center justify-center p-6">
         <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-8 text-center">
             <h3 class="text-2xl font-bold mb-4">Checkout</h3>
@@ -132,6 +254,11 @@
             document.getElementById(page).classList.add('active');
             if (page === 'inventory') renderInventory();
             if (page === 'home') renderFeatured();
+        }
+
+        function filterAndGoToInventory(category) {
+            showPage('inventory');
+            setTimeout(() => filterInventory(category), 200);
         }
 
         function renderFeatured() {
@@ -172,6 +299,16 @@
             return card;
         }
 
+        function filterInventory(preSelectedCategory = '') {
+            const search = document.getElementById('search-input') ? document.getElementById('search-input').value.toLowerCase() : '';
+            let filtered = products;
+            if (preSelectedCategory) filtered = filtered.filter(p => p.mainCategory === preSelectedCategory);
+            if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search));
+            const container = document.getElementById('inventory-grid');
+            container.innerHTML = '';
+            filtered.forEach(product => container.appendChild(createProductCard(product)));
+        }
+
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
@@ -187,7 +324,7 @@
         }
 
         function showCart() {
-            if (cart.length === 0) return alert("Cart is empty");
+            if (cart.length === 0) return alert("Your cart is empty!");
             let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
             showStripeCheckout(total);
         }
@@ -209,7 +346,7 @@
             btn.disabled = true;
             setTimeout(() => {
                 closeStripeModal();
-                alert("✅ Payment Successful in Test Mode!\nOrder number: #NUBZ-" + Date.now());
+                alert("✅ Payment Successful in Test Mode!\nNo real money was charged.");
                 cart = [];
                 updateCartCount();
                 showPage('home');
@@ -217,7 +354,12 @@
         }
 
         function showAdmin() {
-            alert("Admin panel - password: nubz2026");
+            const pass = prompt("Enter admin password:");
+            if (pass === "nubz2026") {
+                alert("Admin panel opened (demo). You can add products here.");
+            } else {
+                alert("Wrong password. Try: nubz2026");
+            }
         }
 
         function showProductModal(product) {
@@ -233,12 +375,16 @@
             btn.addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         }
 
+        function downloadSampleCSV() { alert("Sample CSV would download here"); }
+        function importCSV() { alert("CSV import would process here"); }
+        function submitContactForm() { alert("Message sent! (Demo)"); }
+
         function initializeWebsite() {
             renderFeatured();
             document.getElementById('home').classList.add('active');
             updateCartCount();
             setupMobileMenu();
-            console.log('%c✅ Full Nubz Toys website with Stripe Test Mode loaded!', 'color:#22d3ee');
+            console.log('%c✅ Full Nubz Toys website loaded successfully!', 'color:#22d3ee');
         }
 
         window.onload = initializeWebsite;
