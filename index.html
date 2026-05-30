@@ -225,7 +225,7 @@
     <div id="stripe-modal" class="hidden fixed inset-0 bg-black/80 z-[110] flex items-center justify-center p-6"></div>
 
     <script>
-        // ====================== SUPABASE CONNECTION ======================
+        // ====================== SUPABASE CONNECTION (created ONCE) ======================
         const supabaseUrl = 'https://vdkjjyjfwfndrksruisn.supabase.co';
         const supabaseAnonKey = 'sb_publishable_MUbT8VJ6HKCa1pNUgZYjuA_wzXzECNr';
         const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
@@ -250,6 +250,7 @@
         }
 
         function showPage(page) {
+            console.log('Navigating to:', page);
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(page).classList.add('active');
             if (page === 'inventory') renderInventory();
@@ -417,7 +418,7 @@
             document.getElementById('home').classList.add('active');
             updateCartCount();
             setupMobileMenu();
-            console.log('%c✅ Full complete code with preventDefault fix loaded!', 'color:#22d3ee');
+            console.log('%c✅ Full site with Supabase + navigation fixes loaded!', 'color:#22d3ee');
         }
 
         window.onload = initializeWebsite;
